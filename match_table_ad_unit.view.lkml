@@ -1,5 +1,5 @@
 view: match_table_ad_unit {
-  sql_table_name: (SELECT * dfp.MatchTableAdUnit_8264 WHERE _LATEST_DATE = _DATA_DATE) ;;
+  sql_table_name: (SELECT * FROM `ekoblov-test.dfp.MatchTableAdUnit_8264` WHERE _LATEST_DATE = _DATA_DATE) ;;
 
   dimension: id {
     primary_key: yes

@@ -6,8 +6,6 @@ include: "*.view"
 # include all the dashboards
 include: "*.dashboard"
 
-
-
  explore: impressions {
     label: "Impressions"
     view_label: "Impressions"
@@ -25,7 +23,6 @@ include: "*.dashboard"
   }
 }
 
-
  explore:  clicks {
    label: "Clicks"
    view_label: "Clicks"
@@ -41,5 +38,15 @@ include: "*.dashboard"
       sql_on: ${line_items.id} = ${clicks.line_item_id} ;;
       relationship:  many_to_one
     }
+ }
 
+ explore: match_table_audience_explorer {
+   label: "Audience Facts"
+   view_label: "Audience Facts"
+
+  join: match_table_audience_segment {
+    view_label: "Audience Segment"
+    sql_on: ${match_table_audience_explorer.id} = ${match_table_audience_segment.id} ;;
+    relationship: many_to_one
+  }
  }
