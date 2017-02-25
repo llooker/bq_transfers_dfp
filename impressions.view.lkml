@@ -2,11 +2,11 @@ view: impressions {
   sql_table_name: `ekoblov-test.dfp.impression_8264`
       ;;
 
-
   measure: count {
     type: count
     drill_fields: [detail*]
   }
+
 
   dimension: time {
     type: string
@@ -17,6 +17,8 @@ view: impressions {
     type: string
     sql: ${TABLE}.UserId ;;
   }
+
+
 
   dimension: advertiser_id {
     type: number
@@ -109,7 +111,8 @@ view: impressions {
   }
 
   dimension: postal_code {
-    type: string
+    type: zipcode
+    map_layer_name: us_zipcode_tabulation_areas
     sql: ${TABLE}.PostalCode ;;
   }
 
@@ -238,10 +241,16 @@ view: impressions {
     sql: ${TABLE}._LATEST_DATE ;;
   }
 
-  dimension: _data_date {
-    type: date
-    sql: ${TABLE}._DATA_DATE ;;
+  dimension_group: impression {
+    type: time
+    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
   }
+
+  measure: users {
+    type: count_distinct
+    sql: ${user_id} ;;
+  }
+
 
   set: detail {
     fields: [
@@ -290,8 +299,6 @@ view: impressions {
       active_view_eligible_impression,
       key_part,
       referer_url,
-      _latest_date,
-      _data_date
-    ]
+      _latest_date    ]
   }
 }
