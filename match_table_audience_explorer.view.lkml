@@ -17,8 +17,7 @@ view: match_table_audience_explorer {
       quarter,
       year
     ]
-    convert_tz: no
-    sql: ${TABLE}._DATA_DATE ;;
+    sql: timestamp(${TABLE}._DATA_DATE) ;;
   }
 
   dimension_group: _latest {
@@ -32,7 +31,7 @@ view: match_table_audience_explorer {
       year
     ]
     convert_tz: no
-    sql: ${TABLE}._LATEST_DATE ;;
+    sql: timestamp( ${TABLE}._LATEST_DATE) ;;
   }
 
   dimension: thirty_day_active_size {
@@ -48,6 +47,23 @@ view: match_table_audience_explorer {
   dimension: thirty_day_impressions {
     type: number
     sql: ${TABLE}.ThirtyDayImpressions/2 ;;
+  }
+
+  measure: total_thirty_day_active_size {
+    type: sum
+    sql: ${thirty_day_active_size} ;;
+  }
+
+
+  measure: total_thirty_day_clicks {
+    type: sum
+    sql: ${thirty_day_clicks} ;;
+  }
+
+
+  measure: total_thirty_day_impressions {
+    type: sum
+    sql: ${thirty_day_impressions} ;;
   }
 
   measure: count {

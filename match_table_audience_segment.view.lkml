@@ -18,7 +18,7 @@ view: match_table_audience_segment {
       year
     ]
     convert_tz: no
-    sql: ${TABLE}._DATA_DATE ;;
+    sql: timestamp(${TABLE}._DATA_DATE) ;;
   }
 
   dimension_group: _latest {
@@ -32,7 +32,7 @@ view: match_table_audience_segment {
       year
     ]
     convert_tz: no
-    sql: ${TABLE}._LATEST_DATE ;;
+    sql: timestamp(${TABLE}._LATEST_DATE) ;;
   }
 
   dimension: category_ids {

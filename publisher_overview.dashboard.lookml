@@ -4,6 +4,13 @@
   tile_size: 100
 
   filters:
+    - name: browser_filter
+      title: 'Browser Filter'
+      type: field_filter
+      explore: impressions
+      field: impressions.browser
+
+
 
   elements:
     - name: total_impressions
@@ -52,6 +59,8 @@
       series_types: {}
       height: 1
       width: 4
+      listen:
+        browser_filter: impressions.browser
 
     - name: total_clicks
       title: Total Clicks
@@ -96,6 +105,8 @@
       single_value_title: Total Clicks
       height: 1
       width: 4
+      listen:
+        browser_filter: clicks.browser
 
     - name: total_users
       title: Total Users
@@ -142,6 +153,8 @@
       series_types: {}
       height: 1
       width: 4
+      listen:
+        browser_filter: impressions.browser
 
     - name: clicks_by_zipcode
       title: Clicks By Zipcode
@@ -213,6 +226,8 @@
       map_zoom: 10
       height: 5
       width: 6
+      listen:
+        browser_filter: clicks.browser
 
     - name: users_by_zipcode
       title: Users By Zipcode
@@ -284,6 +299,8 @@
       map_zoom: 10
       height: 5
       width: 6
+      listen:
+        browser_filter: impressions.browser
 
     - name: daily_users_and_impressions
       title: Daily Users and Impressions
@@ -322,6 +339,8 @@
       y_axis_orientation: [left, right]
       series_types:
       impressions.count: line
+      listen:
+        browser_filter: impressions.browser
 
     - name: top_advertisers
       title: Top Advertisers
@@ -367,3 +386,252 @@
       hide_row_totals: false
       table_theme: editable
       series_types: {}
+      listen:
+        browser_filter: impressions.browser
+
+
+
+    - name: thirty_day_clicks_by_owner
+      title: Thirty Day Clicks by Owner
+      type: looker_bar
+      model: doubleclick_dfp
+      explore: match_table_audience_explorer
+      dimensions: [match_table_audience_segment.owner_name]
+      measures: [match_table_audience_explorer.total_thirty_day_clicks]
+      sorts: [match_table_audience_explorer.total_thirty_day_clicks desc]
+      limit: '10'
+      column_limit: '50'
+      query_timezone: America/Los_Angeles
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: "#808080"
+      show_null_points: true
+      point_style: circle
+      interpolation: linear
+      series_types: {}
+
+    - name: thirty_day_impressions_by_owner
+      title: Thirty Day impressions by Owner
+      type: looker_bar
+      model: doubleclick_dfp
+      explore: match_table_audience_explorer
+      dimensions: [match_table_audience_segment.owner_name]
+      measures: [match_table_audience_explorer.total_thirty_day_impressions]
+      sorts: [match_table_audience_explorer.total_thirty_day_impressions desc]
+      limit: '10'
+      column_limit: '50'
+      query_timezone: America/Los_Angeles
+      stacking: ''
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: "#808080"
+      show_null_points: true
+      point_style: circle
+      interpolation: linear
+      series_types: {}
+
+
+    - name: thirty_day_clicks_by_segment
+      title: Thirty Day Clicks By Segment
+      type: looker_pie
+      model: doubleclick_dfp
+      explore: match_table_audience_explorer
+      dimensions: [match_table_audience_segment.segment_type]
+      measures: [match_table_audience_explorer.total_thirty_day_clicks]
+      sorts: [match_table_audience_segment.segment_type]
+      limit: '500'
+      column_limit: '50'
+      query_timezone: America/Los_Angeles
+      value_labels: legend
+      label_type: labPer
+      show_value_labels: false
+      font_size: 12
+      stacking: ''
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: "#808080"
+      series_types: {}
+
+    - name: thirty_day_impressions_by_segment
+      title: Thirty Day Impressions By Segment
+      type: looker_pie
+      model: doubleclick_dfp
+      explore: match_table_audience_explorer
+      dimensions: [match_table_audience_segment.segment_type]
+      measures: [match_table_audience_explorer.total_thirty_day_impressions]
+      sorts: [match_table_audience_segment.segment_type]
+      limit: '500'
+      column_limit: '50'
+      query_timezone: America/Los_Angeles
+      value_labels: legend
+      label_type: labPer
+      show_value_labels: false
+      font_size: 12
+      stacking: ''
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      ordering: none
+      show_null_labels: false
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: "#808080"
+      series_types: {}
+
+    - name: 30_day_clicks_by_segment_overtime
+      title: Trended 30 Day Clicks by Segment
+      type: looker_area
+      model: doubleclick_dfp
+      explore: match_table_audience_explorer
+      dimensions: [match_table_audience_segment.segment_type, match_table_audience_segment._data_month]
+      pivots: [match_table_audience_segment.segment_type]
+      fill_fields: [match_table_audience_segment._data_month]
+      measures: [match_table_audience_explorer.total_thirty_day_clicks]
+      sorts: [match_table_audience_explorer.total_thirty_day_clicks desc 0, match_table_audience_segment.segment_type]
+      limit: '5'
+      column_limit: '50'
+      query_timezone: America/Los_Angeles
+      stacking: normal
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      show_null_points: true
+      point_style: none
+      interpolation: linear
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: "#808080"
+      ordering: none
+      show_null_labels: false
+      value_labels: legend
+      label_type: labPer
+      font_size: '12'
+      series_types: {}
+      colors: ['palette: Santa Cruz']
+      series_colors: {}
+      focus_on_hover: true
+
+    - name: 30_day_impressions_by_segment_overtime
+      title: Trended 30 Day Impressions by Segment
+      type: looker_area
+      model: doubleclick_dfp
+      explore: match_table_audience_explorer
+      dimensions: [match_table_audience_segment.segment_type, match_table_audience_segment._data_month]
+      pivots: [match_table_audience_segment.segment_type]
+      fill_fields: [match_table_audience_segment._data_month]
+      measures: [match_table_audience_explorer.total_thirty_day_impressions]
+      sorts: [match_table_audience_explorer.total_thirty_day_impressions desc 0, match_table_audience_segment.segment_type]
+      limit: '5'
+      column_limit: '50'
+      query_timezone: America/Los_Angeles
+      stacking: normal
+      show_value_labels: false
+      label_density: 25
+      legend_position: center
+      x_axis_gridlines: false
+      y_axis_gridlines: true
+      show_view_names: true
+      limit_displayed_rows: false
+      y_axis_combined: true
+      show_y_axis_labels: true
+      show_y_axis_ticks: true
+      y_axis_tick_density: default
+      y_axis_tick_density_custom: 5
+      show_x_axis_label: true
+      show_x_axis_ticks: true
+      x_axis_scale: auto
+      y_axis_scale_mode: linear
+      show_null_points: true
+      point_style: none
+      interpolation: linear
+      show_totals_labels: false
+      show_silhouette: false
+      totals_color: "#808080"
+      ordering: none
+      show_null_labels: false
+      value_labels: legend
+      label_type: labPer
+      font_size: '12'
+      series_types: {}
+      colors: ['palette: Santa Cruz']
+      series_colors: {}
+      focus_on_hover: true
