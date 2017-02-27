@@ -224,7 +224,7 @@
       map_latitude: 40.762861133145016
       map_longitude: -74.05746459960939
       map_zoom: 10
-      height: 5
+      height: 4
       width: 6
       listen:
         browser_filter: clicks.browser
@@ -297,7 +297,7 @@
       map_latitude: 40.762861133145016
       map_longitude: -74.05746459960939
       map_zoom: 10
-      height: 5
+      height: 4
       width: 6
       listen:
         browser_filter: impressions.browser
@@ -339,6 +339,8 @@
       y_axis_orientation: [left, right]
       series_types:
       impressions.count: line
+      height: 4
+      width: 6
       listen:
         browser_filter: impressions.browser
 
@@ -428,6 +430,8 @@
       point_style: circle
       interpolation: linear
       series_types: {}
+      height: 4
+      width: 6
 
     - name: thirty_day_impressions_by_owner
       title: Thirty Day impressions by Owner
