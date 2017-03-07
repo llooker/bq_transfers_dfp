@@ -50,3 +50,7 @@ include: "*.dashboard"
     relationship: many_to_one
   }
  }
+
+ explore: impression_funnel {}
+
+ explore: activity {}
