@@ -79,10 +79,10 @@ view: line_items {
     sql: ${TABLE}.Status ;;
   }
 
-  dimension: targeting {
-    type: string
-    sql: ${TABLE}.Targeting ;;
-  }
+#   dimension: targeting {
+#     type: string
+#     sql: ${TABLE}.Targeting ;;
+#   }
 
   dimension: units_bought {
     type: number
@@ -115,7 +115,7 @@ view: line_items {
       order_id,
       start_date_time_time,
       status,
-      targeting,
+#       targeting,
       units_bought,
       _latest_date,
       _data_date
