@@ -18,8 +18,6 @@ view: impressions {
     sql: ${TABLE}.UserId ;;
   }
 
-
-
   dimension: advertiser_id {
     type: number
     sql: ${TABLE}.AdvertiserId ;;
@@ -251,6 +249,10 @@ view: impressions {
     sql: ${user_id} ;;
   }
 
+  measure: count_ads {
+    type: count_distinct
+    sql: ${ad_unit_id} ;;
+  }
 
   set: detail {
     fields: [

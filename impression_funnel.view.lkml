@@ -1,5 +1,6 @@
 view: impression_funnel {
   derived_table: {
+    sql_trigger_value: SELECT CURRENT_DATE() ;;
     sql: select user_impression_metrics.*
                   , first_click
                   , latest_click
@@ -65,28 +66,28 @@ view: impression_funnel {
     drill_fields: [detail*]
   }
 
-  dimension: userid {
+  dimension: user_id {
     type: string
     sql: ${TABLE}.userid ;;
   }
 
-  dimension: orderid {
+  dimension: order_id {
     type: number
     sql: ${TABLE}.orderid ;;
   }
 
-  dimension: adunitid {
+  dimension: ad_unit_id {
     type: number
     sql: ${TABLE}.adunitid ;;
   }
 
-  dimension: lineitemid {
+  dimension: line_item_id {
     type: number
     sql: ${TABLE}.lineitemid ;;
   }
 
   dimension: zip_code {
-    type: string
+    type: zipcode
     sql: ${TABLE}.zip_code ;;
   }
 
@@ -112,6 +113,7 @@ view: impression_funnel {
 
   dimension: count_impressions {
     type: number
+    hidden: yes
     sql: ${TABLE}.count_impressions ;;
   }
 
@@ -142,7 +144,14 @@ view: impression_funnel {
 
   dimension: revenue {
     type: number
+    hidden: yes
     sql: ${TABLE}.revenue ;;
+  }
+
+  measure: user_count {
+   type:count_distinct
+   sql: ${user_id} ;;
+   value_format_name: decimal_0
   }
 
  measure: total_impressions {
@@ -157,18 +166,30 @@ view: impression_funnel {
     value_format_name: decimal_0
   }
 
+  measure: click_through_rate {
+    type:number
+    sql: ${total_clicks}*1.0/(NULLIF(${total_impressions},0) ;;
+    value_format_name: percent_2
+  }
+
   measure: total_revenue {
     type:sum
     sql: ${revenue} ;;
-    value_format_name: decimal_0
+    value_format_name: usd_0
+  }
+
+  measure: click_to_revenue_conversion {
+    type:number
+    sql: ${total_revenue}*1.0/(NULLIF(${total_clicks},0) ;;
+    value_format_name: percent_2
   }
 
   set: detail {
     fields: [
-      userid,
-      orderid,
-      adunitid,
-      lineitemid,
+      user_id,
+      order_id,
+      ad_unit_id,
+      line_item_id,
       zip_code,
       state_region,
       country_code,

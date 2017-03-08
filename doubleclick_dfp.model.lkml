@@ -6,6 +6,32 @@ include: "*.view"
 # include all the dashboards
 include: "*.dashboard"
 
+
+
+ explore: impression_funnel {
+  label: "Impression Funnel"
+  view_label: "Impression Funnel"
+
+  join: match_table_ad_unit {
+    view_label: "Ad Units"
+    sql_on: ${match_table_ad_unit.id} = ${impression_funnel.ad_unit_id} ;;
+    relationship: many_to_one
+  }
+  join: line_items {
+    view_label: "Ad Units"
+    sql_on: ${line_items.id} = ${impression_funnel.line_item_id} ;;
+    relationship: many_to_one
+  }
+#   join: user_order_facts {
+#     view_label: "Users"
+#     sql_on: ${impression_funnel.order_id} = ${user_order_facts.order_id} AND ${impression_funnel.user_id} = ${user_order_facts.user_id} ;;
+#     relationship: many_to_one
+#   }
+
+
+ }
+
+
  explore: impressions {
     label: "Impressions"
     view_label: "Impressions"
@@ -51,6 +77,5 @@ include: "*.dashboard"
   }
  }
 
- explore: impression_funnel {}
 
  explore: activity {}
