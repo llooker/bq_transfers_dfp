@@ -1,6 +1,11 @@
 view: impression_funnel {
   derived_table: {
     sql_trigger_value: SELECT CURRENT_DATE() ;;
+
+### Funnel is aggregated at the user & ad_unit level; to include creative_id or advertiser_id
+### level granularity, add creative_id or advertiser_id to the JOIN and GROUP BY clauses
+
+
     sql: select user_impression_metrics.*
                   , first_click
                   , latest_click

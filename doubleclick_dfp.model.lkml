@@ -22,11 +22,11 @@ include: "*.dashboard"
     sql_on: ${line_items.id} = ${impression_funnel.line_item_id} ;;
     relationship: many_to_one
   }
-#   join: user_order_facts {
-#     view_label: "Users"
-#     sql_on: ${impression_funnel.order_id} = ${user_order_facts.order_id} AND ${impression_funnel.user_id} = ${user_order_facts.user_id} ;;
-#     relationship: many_to_one
-#   }
+  join: user_order_facts {
+    view_label: "User Order Information"
+    sql_on: ${impression_funnel.order_id} = ${user_order_facts.order_id} AND ${impression_funnel.user_id} = ${user_order_facts.user_id} ;;
+    relationship: many_to_one
+  }
 
 
  }
