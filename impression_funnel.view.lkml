@@ -19,7 +19,7 @@ view: impression_funnel {
                 , min(time) as first_impression
                 , max(time) as latest_impression
                 , count(*) as count_impressions
-            from `ekoblov-test.dfp.impression_8264`
+            from `ekoblov-test.dfp.impression_8264`     --may need to swap table name with `NetworkImpressions` depending on your naming convention
             where userid <> '' and userid is not null
             group by 1,2,3,4) as user_impression_metrics
 
@@ -32,7 +32,7 @@ view: impression_funnel {
                 , min(time) as first_click
                 , max(time) as latest_click
                 , count(*) as count_clicks
-            from `ekoblov-test.dfp.click_8264`
+            from `ekoblov-test.dfp.click_8264`  --may need to swap table name with `NetworkClicks` depending on your naming convention
             where userid <> '' and userid is not null
             group by 1,2,3,4) as user_click_metrics
 
@@ -51,7 +51,7 @@ view: impression_funnel {
                 , min(time) as first_activity
                 , max(time) as latest_activity
                 , sum(CAST(revenue as FLOAT64)) as revenue
-                from `ekoblov-test.dfp.activity_8264`
+                from `ekoblov-test.dfp.activity_8264`  --may need to swap table name with `NetworkActivities` depending on your naming convention
                 where UserID <> '' and UserID is not null
                 group by 1,2,3,4) as user_activity_metrics
             on user_impression_metrics.userid = user_activity_metrics.userid
@@ -168,7 +168,7 @@ view: impression_funnel {
 
   measure: click_through_rate {
     type:number
-    sql: ${total_clicks}*1.0/(NULLIF(${total_impressions},0) ;;
+    sql: ${total_clicks}*1.0/(NULLIF(${total_impressions},0)) ;;
     value_format_name: percent_2
   }
 
@@ -180,7 +180,7 @@ view: impression_funnel {
 
   measure: click_to_revenue_conversion {
     type:number
-    sql: ${total_revenue}*1.0/(NULLIF(${total_clicks},0) ;;
+    sql: ${total_revenue}*1.0/(NULLIF(${total_clicks},0)) ;;
     value_format_name: percent_2
   }
 

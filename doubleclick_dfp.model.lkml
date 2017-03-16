@@ -66,16 +66,16 @@ include: "*.dashboard"
     }
  }
 
- explore: match_table_audience_explorer {
-   label: "Audience Facts"
-   view_label: "Audience Facts"
+explore: match_table_audience_explorer {
+  label: "Audience Facts"
+  view_label: "Audience Facts"
 
   join: match_table_audience_segment {
     view_label: "Audience Segment"
     sql_on: ${match_table_audience_explorer.id} = ${match_table_audience_segment.id} ;;
     relationship: many_to_one
   }
- }
+}
 
 
  explore: activity {}
