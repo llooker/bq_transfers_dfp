@@ -1,5 +1,5 @@
 view: match_table_audience_explorer {
-  sql_table_name: (SELECT * FROM `ekoblov-test.dfp.MatchTableAudienceExplorer_8264` WHERE _DATA_DATE=_LATEST_DATE) ;;
+  sql_table_name: (SELECT * FROM `ekoblov-test.dfp.MatchTableAudienceExplorer_82109981` WHERE _DATA_DATE=_LATEST_DATE) ;;
 
   dimension: id {
     primary_key: yes

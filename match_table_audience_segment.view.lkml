@@ -1,5 +1,5 @@
 view: match_table_audience_segment {
-  sql_table_name: dfp.MatchTableAudienceSegment_8264 ;;
+  sql_table_name: dfp.MatchTableAudienceSegment_82109981 ;;
 
   dimension: id {
     primary_key: yes
