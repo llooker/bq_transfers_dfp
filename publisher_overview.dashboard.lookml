@@ -3,12 +3,6 @@
   layout: tile
   tile_size: 100
 
-  filters:
-    - name: browser_filter
-      title: 'Browser Filter'
-      type: field_filter
-      explore: impressions
-      field: impressions.browser
 
 
 
@@ -59,8 +53,6 @@
       series_types: {}
       height: 1
       width: 4
-      listen:
-        browser_filter: impressions.browser
 
     - name: total_clicks
       title: Total Clicks
@@ -105,8 +97,7 @@
       single_value_title: Total Clicks
       height: 1
       width: 4
-      listen:
-        browser_filter: clicks.browser
+
 
     - name: total_users
       title: Total Users
@@ -153,8 +144,7 @@
       series_types: {}
       height: 1
       width: 4
-      listen:
-        browser_filter: impressions.browser
+
 
     - name: clicks_by_zipcode
       title: Clicks By Zipcode
@@ -226,8 +216,7 @@
       map_zoom: 10
       height: 4
       width: 6
-      listen:
-        browser_filter: clicks.browser
+
 
     - name: users_by_zipcode
       title: Users By Zipcode
@@ -299,8 +288,7 @@
       map_zoom: 10
       height: 4
       width: 6
-      listen:
-        browser_filter: impressions.browser
+
 
     - name: daily_users_and_impressions
       title: Daily Users and Impressions
@@ -341,8 +329,7 @@
       impressions.count: line
       height: 4
       width: 6
-      listen:
-        browser_filter: impressions.browser
+
 
     - name: top_advertisers
       title: Top Advertisers
@@ -388,8 +375,7 @@
       hide_row_totals: false
       table_theme: editable
       series_types: {}
-      listen:
-        browser_filter: impressions.browser
+
 
 
 

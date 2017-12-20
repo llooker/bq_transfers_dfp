@@ -51,15 +51,13 @@ view: match_table_audience_explorer {
 
   measure: total_thirty_day_active_size {
     type: sum
-    sql: ${thirty_day_active_size} ;;
+    sql: ${thirty_day_active_size};;
   }
-
 
   measure: total_thirty_day_clicks {
     type: sum
     sql: ${thirty_day_clicks} ;;
   }
-
 
   measure: total_thirty_day_impressions {
     type: sum
