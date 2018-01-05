@@ -247,6 +247,7 @@ view: impressions {
   measure: users {
     type: count_distinct
     sql: ${user_id} ;;
+    drill_fields: [country,users,count_ads]
   }
 
   measure: count_ads {

@@ -226,7 +226,7 @@ view: match_table_user {
   dimension: id {
     type: string
     primary_key: yes
-    sql: ${TABLE}.Id ;;
+    sql: CAST(${TABLE}.Id as STRING) ;;
   }
 
   dimension: is_service_account {

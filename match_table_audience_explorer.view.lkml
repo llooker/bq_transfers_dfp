@@ -1,5 +1,5 @@
 view: match_table_audience_explorer {
-  sql_table_name: (SELECT * FROM `ekoblov-test.dfp.MatchTableAudienceExplorer_82109981` WHERE _DATA_DATE=_LATEST_DATE) ;;
+  sql_table_name:`ekoblov-test.dfp.MatchTableAudienceExplorer_82109981` ;;
 
   dimension: id {
     primary_key: yes
@@ -36,31 +36,34 @@ view: match_table_audience_explorer {
 
   dimension: thirty_day_active_size {
     type: number
-    sql: ${TABLE}.ThirtyDayActiveSize/2 ;;
+    hidden: yes
+    sql: ${TABLE}.ThirtyDayActiveSize ;;
   }
 
   dimension: thirty_day_clicks {
     type: number
-    sql: ${TABLE}.ThirtyDayClicks/2 ;;
+    hidden: yes
+    sql: ${TABLE}.ThirtyDayClicks ;;
   }
 
   dimension: thirty_day_impressions {
     type: number
-    sql: ${TABLE}.ThirtyDayImpressions/2 ;;
+    hidden: yes
+    sql: ${TABLE}.ThirtyDayImpressions ;;
   }
 
   measure: total_thirty_day_active_size {
-    type: sum
+    type: max
     sql: ${thirty_day_active_size};;
   }
 
   measure: total_thirty_day_clicks {
-    type: sum
+    type: max
     sql: ${thirty_day_clicks} ;;
   }
 
   measure: total_thirty_day_impressions {
-    type: sum
+    type: max
     sql: ${thirty_day_impressions} ;;
   }
 

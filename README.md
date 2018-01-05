@@ -1,13 +1,23 @@
+### What does this Block do for me?
+
+**(1) Replication + More** - Replication of existing DFP reports and dashboards, plus additional value-add analysis, accelerates time to value with a full plug-and-play model
+
+**(2) Expertise** - Leverage analytics expertise of Looker + DFP product teams
+
+**(3) Central Data Platform** - Take advantage of Looker's data platform functionality, including data actions, scheduling, permissions, alerting, parameterization (each user can only see their own data), and more
+
+
 ### Block Info
 
-_This Block is modeled on the schema brough in by Google's [BigQuery Transfer Service](https://cloud.google.com/bigquery/transfer/). It will cover many of the core entities involved with the DoubleClick for Publishers offering. Depending on how you use the DFP service, you may have additional entities brought in through thge BQ Transfer Service, especially any custom built reports. This Block should serve as a great jump start. Happy modeling!_
+This Block is modeled on the schema brough in by Google's [BigQuery Transfer Service](https://cloud.google.com/bigquery/transfer/). It will cover many of the core entities involved with the DoubleClick for Publishers offering. Depending on how you use the DFP service, you may have additional entities brought in through thge BQ Transfer Service, especially any custom built reports. This Block should serve as a great jump start. Happy modeling!
 
-_The schema documentation for Doubleclick for Publishers can be found in [Google's docs](https://developers.google.com/doubleclick-publishers/docs/intro). Please note that your naming might vary slightly._
+The schema documentation for Doubleclick for Publishers can be found in [Google's docs](https://developers.google.com/doubleclick-publishers/docs/intro). Please note that your naming might vary slightly.
+
 
 
 ### Data Structure
 
-* **Funnel Table** - DFP data is modeled around three core entities: impressions, clicks, and activities. We've created a rolled-up funnel by joining these tables onto each other at a low-level of granularity using many join keys due to the lack of a single primary keys in each table.
+* **Funnel Tables** - DFP data is modeled around three core entities: impressions, clicks, and activities. We've created a rolled-up funnel by joining these tables onto each other at a low-level of granularity using many join keys due to the lack of a single primary keys in each table.
 
 * **Match Tables** - DFP seperates out various attributes of each event (impressions, clicks, activities) using match tables, meaning we have various "ID" columns in the funnel, which we then join onto these match tables (think of them as mapping tables). After joining, all these additional attributes which can be used to evaluate impressions, clicks, activities, revenue, and much more. For example, we have a an `AdUnitId` column in our funnel. To get the names and more information about those Ad Units, we join on our `match_table_ad_units` table.
 

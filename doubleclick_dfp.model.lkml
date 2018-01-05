@@ -49,7 +49,7 @@ explore: match_table_audience_explorer {
 
   join: match_table_audience_segment {
     view_label: "Audience Segment"
-    sql_on: ${match_table_audience_explorer.id} = ${match_table_audience_segment.id} ;;
+    sql_on: ${match_table_audience_explorer.id} = ${match_table_audience_segment.id} and ${match_table_audience_explorer._data_date} = ${match_table_audience_segment._data_date};;
     relationship: many_to_one
   }
 }

@@ -9,6 +9,7 @@ view: impression_funnel {
                   , count_clicks
                   , first_activity
                   , latest_activity
+                  , activities
                   , revenue
             from
             (select userid
@@ -68,6 +69,7 @@ view: impression_funnel {
                 , AdvertiserId
                 , min(time) as first_activity
                 , max(time) as latest_activity
+                , sum(CAST(quantity as FLOAT64)) as activities
                 , sum(CAST(revenue as FLOAT64)) as revenue
                 from `ekoblov-test.dfp.activity_8264`  --may need to swap table name with `NetworkActivities` depending on your naming convention
                 -- where UserID <> '' and UserID is not null
@@ -192,6 +194,12 @@ view: impression_funnel {
     sql: ${TABLE}.revenue ;;
   }
 
+  dimension: activities {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.activities ;;
+  }
+
   measure: user_count {
    type:count_distinct
    sql: ${user_id} ;;
@@ -220,6 +228,13 @@ view: impression_funnel {
     type:sum
     sql: ${revenue} ;;
     value_format_name: usd_0
+  }
+
+  measure: total_activities {
+    type:sum
+    description: "The total quantity of an activity occuring. Activities are custom defined, and can represent pageviews, form fills, purchases, or other"
+    sql: ${activities} ;;
+    value_format_name: decimal_0
   }
 
   measure: click_to_revenue_conversion {

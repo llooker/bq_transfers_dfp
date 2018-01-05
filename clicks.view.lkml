@@ -4,7 +4,7 @@ view: clicks {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
+    drill_fields: [domain,count]
   }
 
   dimension: time {
